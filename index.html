@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📅 学习打卡日历</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📅 学习打卡日历</h1>
+    <p class="subtitle">今天学了什么，格子说了算</p>
+  </header>
+
+  <main>
+    <!-- 功能③：连续坚持天数 -->
+    <section class="streak-bar">
+      🔥 连续坚持 <span id="streak-num">0</span> 天
+    </section>
+
+    <!-- 功能③：本月日历（格子由 script.js 生成） -->
+    <section class="card">
+      <h2 id="month-title">--月</h2>
+      <div class="calendar">
+        <div class="weekday">日</div><div class="weekday">一</div><div class="weekday">二</div>
+        <div class="weekday">三</div><div class="weekday">四</div><div class="weekday">五</div>
+        <div class="weekday">六</div>
+        <!-- 日期格从这里开始，由 JS 填充 -->
+        <div id="days" class="days"></div>
+      </div>
+      <p class="tip">点<b>今天</b>或<b>昨天</b>的格子打卡；点已打卡的格子回看内容</p>
+    </section>
+
+    <!-- 功能①②：打卡表单（点格子后出现） -->
+    <section class="card form-card" id="form-card" style="display:none">
+      <h2 id="form-title">打卡</h2>
+      <label class="field-label">今天学了什么</label>
+      <textarea id="what-input" rows="2" placeholder="例如：学了 localStorage 的读档存档"></textarea>
+      <label class="field-label">有哪些收获</label>
+      <textarea id="gain-input" rows="2" placeholder="例如：明白了所有有记忆的应用共用同一个心跳"></textarea>
+      <p id="hint" class="hint"></p>
+      <button id="save-btn" class="btn-primary">保存打卡</button>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://liuandi-dev.github.io/homepage/" target="_blank">← 回我的主页</a>
+    <p>Andy · 100 项目挑战 · 项目 #016</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

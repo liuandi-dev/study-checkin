@@ -1,0 +1,153 @@
+/* ===== 全局重置 + 主题变量（延续靛蓝体系） ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --accent: #6366f1;
+  --accent-light: #eef2ff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --error: #dc2626;
+}
+
+body {
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header { text-align: center; padding: 40px 20px 8px; }
+header h1 { font-size: 28px; }
+.subtitle { color: var(--muted); margin-top: 4px; }
+
+main {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  flex: 1;
+}
+
+/* 连续天数横幅 */
+.streak-bar {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border-radius: 12px;
+  text-align: center;
+  padding: 14px;
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+#streak-num { font-size: 28px; font-weight: 800; margin: 0 4px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+}
+.card h2 { font-size: 17px; text-align: center; margin-bottom: 14px; }
+
+/* ===== 日历：7 列网格 ===== */
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 0;
+}
+.days { display: contents; } /* 让日期格直接铺进 7 列网格，不另起一层 */
+
+.day {
+  aspect-ratio: 1;            /* 正方形格子 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+/* 已打卡：实心靛蓝 */
+.day.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+/* 今天：橙色描边，一眼找到自己 */
+.day.today { border: 2px solid #f59e0b; }
+/* 能点（今天/昨天且还没打卡，或任何已打卡的格子）：手型 + 悬停上浮 */
+.day.clickable { cursor: pointer; transition: transform 0.1s; }
+.day.clickable:hover { transform: scale(1.08); }
+/* 未来 & 空白前置格 */
+.day.future { opacity: 0.3; }
+.day.blank { border: none; background: transparent; }
+
+.tip {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ===== 打卡表单 ===== */
+.field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 4px;
+}
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+}
+textarea:focus { border-color: var(--accent); }
+
+.hint { min-height: 20px; font-size: 13px; color: var(--error); margin-top: 6px; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 28px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.15s;
+}
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* 回看模式下的内容展示（复用表单卡片） */
+.view-text {
+  background: var(--accent-light);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+}
+footer a { color: var(--accent); text-decoration: none; }
