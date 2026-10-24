@@ -92,18 +92,9 @@ function renderCalendar() {
 function calcStreak() {
   let streak = 0;
   let key = todayKey();
-  function calcStreak() {
-  let streak = 0;
-  let key = todayKey();
   if (!records[key]) {
     key = prevDayKey(key);   // 今天还没打卡：从昨天开始数
   }
-  while (records[key]) {
-    streak++;
-    key = prevDayKey(key);
-  }
-  return streak;
-}
   while (records[key]) {
     streak++;
     key = prevDayKey(key);
